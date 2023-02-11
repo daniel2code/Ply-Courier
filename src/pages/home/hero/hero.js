@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./hero.css";
 
 const Hero = () => {
@@ -25,7 +26,7 @@ const Hero = () => {
                     className="bg-white w-full max-w-[500px] h-[55px] pl-3 outline-none rounded-l-lg"
                   />
                   <button className="h-[55px] bg-[#f15f22] text-white font-semibold px-[20px] rounded-r-lg">
-                    Track & Trace
+                    <Link to="/tracker">Track & Trace</Link>
                   </button>
                 </form>
                 {/* <!-- Hero Pera --> */}

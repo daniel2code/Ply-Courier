@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import MapView from "./mapContainer";
 import Navbar from "../../components/navbar/navbar";
+import Footer from "../../components/footer/footer";
 import TrackerDetails from "./trackerDetails";
 
 const Tracker = () => {
@@ -40,7 +41,10 @@ const Tracker = () => {
                 </p>
               </div>
 
-              <button className="border border-[#ff5f13] font-medium px-3 rounded" onClick={handleCloseModal}>
+              <button
+                className="border border-[#ff5f13] font-medium px-3 rounded"
+                onClick={handleCloseModal}
+              >
                 Tracking details
               </button>
             </div>
@@ -49,6 +53,7 @@ const Tracker = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

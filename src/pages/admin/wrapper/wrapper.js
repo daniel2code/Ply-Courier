@@ -19,7 +19,7 @@ const Wrapper = ({ children }) => {
       <TopBar handleOpenMenu={handleOpenMenu} />
       <div className="flex w-full">
         <div
-          className="bg-[#00000050] fixed sm:relative hidden lg:flex w-full right-[230px] sm:w-fit sidebar"
+          className="bg-[#00000050] fixed sm:relative hidden lg:flex w-full right-[230px] lg:right-0 sm:w-fit sidebar"
           ref={menuRef}
         >
           <div className="w-[230px]">

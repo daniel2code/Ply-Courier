@@ -4,18 +4,18 @@ import manimg from "../../../assets/image/man.png";
 const Testimonies = () => {
   return (
     <div
-      className="bg-[#10285d] py-[35px]"
+      className="bg-[#10285d] py-[45px]"
       data-background="assets/img/gallery/section_bg04.jpg"
     >
       <div className="w-full px-[5%] py-[50px] flex justify-center mb-[70px]">
-        <div className="w-full max-w-[1300px] flex justify-between">
-          <div className="w-[65%]">
+        <div className="w-full max-w-[1300px] flex justify-between flex-col md:flex-row ">
+          <div className="w-full md:w-[65%]">
             {/* <!-- Section Tittle --> */}
             <div className="section-tittle section-tittle2 mb-25">
               <span className="text-[#f15f22] font-semibold my-4 ">
                 Clients Testimonials
               </span>
-              <h2 className="font-bold text-[40px] text-white">
+              <h2 className="font-bold text-[40px] my-[15px] text-white">
                 What Our Clients Say!
               </h2>
             </div>
@@ -33,7 +33,7 @@ const Testimonies = () => {
                     </p>
                   </div>
                   {/* <!-- founder --> */}
-                  <div className="mt-[20px] flex items-center">
+                  <div className="mt-[40px] flex items-center">
                     <div className="founder-img">
                       <img src={manimg} alt="human" />
                     </div>
@@ -48,7 +48,7 @@ const Testimonies = () => {
             </div>
           </div>
           {/* <!-- Form Start --> */}
-          <div className="w-[30%] rounded-[15px] bg-[#fff] ">
+          <div className="md:w-[30%] w-full mt-[50px] md:mt-0 rounded-[15px] bg-[#fff] ">
             <div className="px-[20px] py-[40px]">
               <h3 className="text-[#2c234d] text-[25px] font-semibold text-center ">
                 Always listening, always understanding.
@@ -58,7 +58,7 @@ const Testimonies = () => {
                 placeholder="Incoterms"
                 className="border border-[#a4acc3] my-[20px] w-full rounded px-4 py-3"
               />
-              <button className="rounded bg-[#f15f22] px-4 py-3 text-[#fff] w-full">
+              <button className="rounded bg-[#f15f22] mt-[10px] px-4 py-3 text-[#fff] w-full">
                 Request a Quote
               </button>
             </div>

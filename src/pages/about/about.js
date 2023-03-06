@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
+import Testimonies from "../home/testimonies/testimonies";
 import AboutSection from "../home/about/about";
 
 const About = () => {
@@ -14,9 +15,10 @@ const About = () => {
           </h2>
         </div>
       </div>
-      <div className="my-[80px]" >
+      <div className="my-[80px]">
         <AboutSection />
       </div>
+      <Testimonies />
       <Footer />
     </>
   );

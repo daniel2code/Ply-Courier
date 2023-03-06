@@ -68,7 +68,7 @@ const Navbar = () => {
                   ref={menuRef}
                 >
                   {/* <!-- Main-menu --> */}
-                  <div className="w-full flex flex-col md:hidden">
+                  <div className="w-full md:flex flex-col hidden">
                     <div className="flex md:hidden justify-end">
                       <AiOutlineClose
                         className="flex md:hidden cursor-pointer"
@@ -80,27 +80,27 @@ const Navbar = () => {
 
                     <nav className="flex">
                       <ul id="" className="flex gap-x-[20px] menu-box">
-                        <li className="text-white menu text-[15px]">
+                        <li className="text-[#7b8693] menu text-[15px]">
                           <Link to="/">Home</Link>
                         </li>
-                        <li className="text-white menu text-[15px]">
+                        <li className="text-[#7b8693] menu text-[15px]">
                           <Link to="/about">About</Link>
                         </li>
-                        <li className="text-white menu text-[15px]">
+                        <li className="text-[#7b8693] menu text-[15px]">
                           <Link to="/service">Services</Link>
                         </li>
-                        <li className="text-white menu text-[15px]">
+                        <li className="text-[#7b8693] menu text-[15px]">
                           <Link to="">Blog</Link>
                         </li>
-                        <li className="text-white menu text-[15px]">
+                        <li className="text-[#7b8693] menu text-[15px]">
                           <Link to="/contact">Contact</Link>
                         </li>
                       </ul>
                     </nav>
                     {/* <!-- Header-btn --> */}
-                    <button className="py-3 px-6 font-semibold text-white bg-[#f15f22] rounded ml-4 menu-btn">
+                    {/* <button className="py-3 px-6 font-semibold text-white bg-[#f15f22] rounded ml-4 menu-btn">
                       Get A Qoue
-                    </button>
+                    </button> */}
                   </div>
                 </div>
 
@@ -110,10 +110,6 @@ const Navbar = () => {
                   color="#f15f22"
                   onClick={handleOpenMenu}
                 />
-              </div>
-              {/* <!-- Mobile Menu --> */}
-              <div className="">
-                <div className=""></div>
               </div>
             </div>
           </div>

@@ -8,6 +8,7 @@ import { db, storage } from "../../../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
 import { collection, addDoc, doc, setDoc, getDocs } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ToastContainer, toast } from "react-toastify";
 
 const Orders = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -15,9 +16,9 @@ const Orders = () => {
   const [formData, setFormData] = useState();
   const [perc, setPerc] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [data, setData]=useState(null)
+  const [data, setData] = useState(null);
 
-  console.log(data)
+  const notify = (text) => toast(text);
 
   useEffect(() => {
     const uploadFile = () => {
@@ -70,25 +71,34 @@ const Orders = () => {
     [formData]
   );
 
+  console.log(formData)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    if (!formData || formData && Object.keys(formData).length < 9) {
+      notify("Please fill all input fields!");
+    } else {
+      setLoading(true);
 
-    let docId = uuidv4();
+      let docId = uuidv4();
 
-    try {
-      let data = await setDoc(doc(db, "orders", docId), {
-        id: docId,
-        ...formData,
-      });
+      try {
+        let data = await setDoc(doc(db, "orders", docId), {
+          id: docId,
+          ...formData,
+        });
 
-      setLoading(false);
-      // window.location.reload();
-      console.log(data);
-      // onClose();
-    } catch (err) {
-      alert(err);
-      setLoading(false);
+        setLoading(false);
+        notify("succesfully created order");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+        // onClose();
+      } catch (err) {
+        alert(err);
+        setLoading(false);
+      }
     }
   };
 
@@ -143,8 +153,8 @@ const Orders = () => {
                     <SiVirustotal size={25} />
                   </div>
 
-                  <div>
-                    <p className="text-[20px]">300</p>
+                  <div className="flex flex-col justify-center items-center">
+                    <p className="text-[20px]">{data?.length}</p>
                     <p className="text-[12px]">orders</p>
                   </div>
                 </div>
@@ -152,11 +162,12 @@ const Orders = () => {
             </div>
 
             <div className="mt-[20px]">
-              <Table handleOpenForm={handleOpenForm} />
+              <Table handleOpenForm={handleOpenForm} data={data} />
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </Wrapper>
   );
 };

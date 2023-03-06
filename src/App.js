@@ -9,6 +9,7 @@ import AdminHome from "./pages/admin/home/ahome";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Orders from "./pages/admin/orders/orders";
 import Transaction from "./pages/admin/transaction/transaction";
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (

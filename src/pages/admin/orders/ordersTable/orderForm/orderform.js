@@ -17,7 +17,7 @@ const Orderform = ({
         <div className="flex justify-between w-full items-center">
           <p className="text-[20px] font-medium">Create Order</p>
 
-          <AiOutlineClose size={30} onClick={handleOpenForm} />
+          <AiOutlineClose size={30} onClick={handleOpenForm} className="cursor-pointer" />
         </div>
 
         <form className="mt-2">
@@ -67,6 +67,8 @@ const Orderform = ({
             name="id"
             // value={formData.id || ''}
             onChange={handleChange}
+            minLength='10'
+            maxLength='10'
           />
 
           <input

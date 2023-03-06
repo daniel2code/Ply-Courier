@@ -1,16 +1,23 @@
 import React from "react";
 import "./table.css";
+import { useLocation } from "react-router-dom";
 
-const Table = ({ handleOpenForm }) => {
+const Table = ({ handleOpenForm, data }) => {
+  const location = useLocation();
+
   return (
     <div className="table_box w-full">
       <div className="flex justify-between py-3 px-4 flex-col-reverse sm:flex-row gap-y-4">
-        <button
-          className="text-sm bg-black text-white px-5 py-2 rounded cursor-pointer"
-          onClick={handleOpenForm}
-        >
-          Create Order
-        </button>
+        {location.pathname === "/admin" ? (
+          <p className="text-[16px] font-semibold " >Orders</p>
+        ) : (
+          <button
+            className="text-sm bg-black text-white px-5 py-2 rounded cursor-pointer"
+            onClick={handleOpenForm}
+          >
+            Create Order
+          </button>
+        )}
 
         <div className="flex items-center gap-x-[15px] flex-wrap gap-y-3">
           <input
@@ -36,21 +43,21 @@ const Table = ({ handleOpenForm }) => {
           <p className="text-[15px] font-bold w-[17%]">Issued Date</p>
         </div>
 
-        {[...Array(10)].map(() => {
+        {data && data.map((item, i) => {
           return (
-            <div className="flex t_body_box px-3 py-4 w-[640px] sm:w-full">
-              <p className="text-[13px] w-[17%]">Leather Shoe</p>
-              <p className="text-[13px] w-[27%]">34687900735</p>
-              <p className="text-[13px] w-[19%]">Germany</p>
-              <p className="text-[13px] w-[17%]">Completed</p>
-              <p className="text-[13px] w-[17%]">21/05/2022</p>
+            <div className="flex t_body_box px-3 py-4 w-[640px] sm:w-full" key={i} >
+              <p className="text-[13px] w-[17%]">{item.product}</p>
+              <p className="text-[13px] w-[27%]">{item.orderNo}</p>
+              <p className="text-[13px] w-[19%]">{item.location}</p>
+              <p className="text-[13px] w-[17%]">{item.status}</p>
+              <p className="text-[13px] w-[17%]">{item.date}</p>
             </div>
           );
         })}
       </div>
 
       <div className="mt-5 px-3 flex justify-between mb-2">
-        <p className="text-gray-400">Showing 1 to 10 of 200 entries</p>
+        <p className="text-gray-400">Showing 1 to 10 of {data?.length} entries</p>
         <div className="flex gap-x-7">
           <div className="bg-gray-100 px-2 py-1 rounded"> {`<`} </div>
           <div className="bg-gray-100 px-2 py-1 rounded"> {`>`} </div>

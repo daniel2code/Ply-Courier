@@ -1,5 +1,4 @@
-import { FaLocationArrow, FaTimes } from "react-icons/fa";
-
+import { useEffect } from "react";
 import {
   useJsApiLoader,
   GoogleMap,
@@ -8,16 +7,17 @@ import {
   DirectionsRenderer,
 } from "@react-google-maps/api";
 import { useRef, useState } from "react";
+import Geocode from "react-geocode";
 
 const center = { lat: 48.8584, lng: 2.2945 };
 
-function App() {
+function Map() {
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: "AIzaSyA_GiCEBBGdV357UVRbd72vxOaonKSAmoE",
     libraries: ["places"],
   });
 
-  const [map, setMap] = useState(/** @type google.maps.Map */ (null));
+  const [map, setMap] = useState(null);
   const [directionsResponse, setDirectionsResponse] = useState(null);
   const [distance, setDistance] = useState("");
   const [duration, setDuration] = useState("");
@@ -26,6 +26,24 @@ function App() {
   const originRef = useRef();
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef();
+
+  useEffect(() => {
+    Geocode.setApiKey("AIzaSyA_GiCEBBGdV357UVRbd72vxOaonKSAmoE");
+
+    const handleGeoCode = () => {
+      Geocode.fromAddress("Nigeria").then(
+        (response) => {
+          const address = response.results[0].geometry.location.lat;
+          console.log(address);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    };
+
+    handleGeoCode();
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -79,4 +97,4 @@ function App() {
   );
 }
 
-export default App;
+export default Map;

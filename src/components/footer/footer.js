@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../../assets/img/logo/logo.png";
+import Logo from "../../assets/img/logo/new-logo.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 import { IoLogoGoogleplus } from "react-icons/io";
@@ -114,7 +114,7 @@ const Footer = () => {
                 </div>
 
                 <div className="flex flex-col gap-x-[15px]">
-                  <img src={Logo} className="w-[230px]" />
+                  <img src={Logo} className="w-[200px]" />
 
                   <p className="text-[15px] text-gray-400 mt-4 w-[90%]">
                     GThe trade war currently ensuing between te US anfd several

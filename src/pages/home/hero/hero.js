@@ -33,12 +33,12 @@ const Hero = () => {
           });
 
           setFiltered(r);
+          console.log('dataaaaa', r);
 
           if (!filtered) notify("incorrect track code");
           else {
             navigate("/tracker", { state: r });
           }
-          console.log(r);
           setLoading(false);
         } catch (err) {
           notify("incorrect track code");

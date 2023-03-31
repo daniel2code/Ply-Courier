@@ -5,6 +5,7 @@ import Hero from "./hero/hero";
 import Services from "./serices/services";
 import About from "./about/about";
 import Time from "./time/time";
+import Video from "./video/video"
 import Testimonies from "./testimonies/testimonies";
 
 const home = () => {
@@ -14,6 +15,7 @@ const home = () => {
       <Hero />
       <Time />
       <Services />
+      <Video />
       <About />
       <Testimonies />
       <Footer />

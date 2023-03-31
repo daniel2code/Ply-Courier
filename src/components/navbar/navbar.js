@@ -5,7 +5,7 @@ import { BsTwitter } from "react-icons/bs";
 import { IoLogoGoogleplus } from "react-icons/io";
 import { RiMenu3Fill } from "react-icons/ri";
 import { AiOutlineClose } from "react-icons/ai";
-import Logo from "../../assets/img/logo/logo.png";
+import Logo from "../../assets/img/logo/new-logo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -60,7 +60,7 @@ const Navbar = () => {
               <div className="flex max-w-[1300px] justify-between w-full">
                 {/* <!-- Logo --> */}
                 <div className="">
-                  <img src={Logo} alt="" />
+                  <img src={Logo} alt="" className="w-[150px] " />
                 </div>
 
                 <div
@@ -73,16 +73,16 @@ const Navbar = () => {
                         <Link to="/">Home</Link>
                       </li>
                       <li className="text-[#7b8693] menu text-[15px]">
-                        <Link to="/about">About</Link>
+                        <Link to="/about">About Us</Link>
                       </li>
                       <li className="text-[#7b8693] menu text-[15px]">
-                        <Link to="/service">Services</Link>
+                        <Link to="/service">Our Services</Link>
                       </li>
                       <li className="text-[#7b8693] menu text-[15px]">
-                        <Link to="">Blog</Link>
+                        <Link to="/shipment">Shipment & Tracking</Link>
                       </li>
                       <li className="text-[#7b8693] menu text-[15px]">
-                        <Link to="/contact">Contact</Link>
+                        <Link to="/contact">Contact Us</Link>
                       </li>
                     </ul>
                   </nav>
@@ -104,16 +104,16 @@ const Navbar = () => {
                           <Link to="/">Home</Link>
                         </li>
                         <li className="text-white menu text-[15px]">
-                          <Link to="/about">About</Link>
+                          <Link to="/about">About Us</Link>
                         </li>
                         <li className="text-white menu text-[15px]">
-                          <Link to="/service">Services</Link>
+                          <Link to="/service">Our Services</Link>
                         </li>
                         <li className="text-white menu text-[15px]">
-                          <Link to="">Blog</Link>
+                          <Link to="shipment">Shipment & Tracking</Link>
                         </li>
                         <li className="text-white menu text-[15px]">
-                          <Link to="/contact">Contact</Link>
+                          <Link to="/contact">Contact Us</Link>
                         </li>
                       </ul>
                     </nav>

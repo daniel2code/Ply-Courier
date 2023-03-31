@@ -14,7 +14,50 @@
   background-blend-mode: multiply;
 }
 
-.menu:hover{
+.wrapper-shipment {
+  background-image: url("./assets/image/shipment.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 400px;
+  width: 100%;
+  background-color: #10285d97;
+  background-blend-mode: multiply;
+}
+
+.img {
+  background-image: url(https://logisticscloudco.com/wp-content/uploads/2021/06/DSC05555-scaled-e1625015401492.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0 0 0 / 0.3);
+  background-blend-mode: multiply;
+}
+
+.img2 {
+  background-image: url(https://logisticscloudco.com/wp-content/uploads/2021/06/NO-COPYRIGHT-TAKE-CONTROL.jpeg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0 0 0 / 0.3);
+  background-blend-mode: multiply;
+}
+
+.img:hover {
+  background-color: rgba(0 0 0 / 0.5);
+  transition: all 0.4s;
+}
+
+.img2:hover {
+  background-color: rgba(0 0 0 / 0.5);
+  transition: all 0.4s;
+}
+
+.border-bold {
+  border-width: 20px;
+}
+
+.menu:hover {
   text-decoration: underline;
   transition: all 0.3s;
   color: #f15f22;

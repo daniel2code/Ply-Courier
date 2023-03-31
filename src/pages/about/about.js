@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import Testimonies from "../home/testimonies/testimonies";
 import AboutSection from "../home/about/about";
+import Video from "../home/video/video";
 
 const About = () => {
   return (
@@ -18,6 +19,7 @@ const About = () => {
       <div className="my-[80px]">
         <AboutSection />
       </div>
+      <Video />
       <Testimonies />
       <Footer />
     </>

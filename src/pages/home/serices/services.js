@@ -41,7 +41,7 @@ const Services = () => {
               <div
                 className="w-[100%] md:w-[48%] lg:w-[32%] border service-card border-gray-300 rounded-md flex flex-col justify-center items-center px-[2%] h-[350px]"
                 onMouseEnter={()=> handleHoverColor("white")}
-                onMouseLeave={()=>handleHoverColor("orange")}
+                onMouseLeave={()=>handleHoverColor("#f15f22")}
 
               >
                 <span className="">{item.icon}</span>

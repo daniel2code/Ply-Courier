@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import "./orders.css";
 import Table from "./ordersTable/table";
 import Wrapper from "../wrapper/wrapper";
@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from "uuid";
 import { collection, addDoc, doc, setDoc, getDocs } from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
+import emailjs from "emailjs-com";
 
 const Orders = () => {
   const [openForm, setOpenForm] = useState(false);
@@ -18,7 +19,29 @@ const Orders = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
 
+  const form = useRef();
+
   const notify = (text) => toast(text);
+
+  const sendForm = () => {
+    emailjs
+      .sendForm(
+        "service_75hvs3s",
+        "template_9k7f5fp",
+        "#myForm",
+        "user_PgZ0sFKko0nRm9OGElC9U"
+      )
+      .then(
+        (result) => {
+          // show the user a success message
+          console.log(result)
+        },
+        (error) => {
+          // show the user an error
+          console.log(error)
+        }
+      );
+  };
 
   useEffect(() => {
     const uploadFile = () => {
@@ -71,11 +94,10 @@ const Orders = () => {
     [formData]
   );
 
-  console.log(formData)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData || formData && Object.keys(formData).length < 9) {
+    if (!formData || (formData && Object.keys(formData).length < 9)) {
       notify("Please fill all input fields!");
     } else {
       setLoading(true);
@@ -87,7 +109,7 @@ const Orders = () => {
           id: docId,
           ...formData,
         });
-
+        sendForm();
         setLoading(false);
         notify("succesfully created order");
         setTimeout(() => {
@@ -139,6 +161,7 @@ const Orders = () => {
           setFile={setFile}
           loading={loading}
           perc={perc}
+          forrm={form}
         />
       )}
       <div className="p-4">

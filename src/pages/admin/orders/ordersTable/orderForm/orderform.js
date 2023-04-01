@@ -10,17 +10,40 @@ const Orderform = ({
   setFile,
   loading,
   perc,
+  form,
 }) => {
   return (
     <div className="w-full h-full p-4 fixed bg-[#00000050] flex justify-center items-center">
-      <div className="bg-white rounded w-full max-w-[550px] mb-[40px] mr-[15%] h-[600px] py-3 px-5">
+      <div className="bg-white rounded w-full max-w-[550px] mb-[40px] overflow-y-auto mr-[15%] h-[600px] py-3 px-5">
         <div className="flex justify-between w-full items-center">
           <p className="text-[20px] font-medium">Create Order</p>
 
-          <AiOutlineClose size={30} onClick={handleOpenForm} className="cursor-pointer" />
+          <AiOutlineClose
+            size={30}
+            onClick={handleOpenForm}
+            className="cursor-pointer"
+          />
         </div>
 
-        <form className="mt-2">
+        <form className="mt-2" ref={form} id="myForm" >
+          <input
+            className="input rounded px-2 py-2 w-full mt-3 outline-none"
+            placeholder="Full Name"
+            name="name"
+            // value={formData.product || ''}
+            onChange={handleChange}
+            id="name"
+          />
+
+          <input
+            className="input rounded px-2 py-2 w-full mt-3 outline-none"
+            placeholder="Email Address"
+            name="email"
+            // value={formData.product || ''}
+            onChange={handleChange}
+            id="email"
+          />
+
           <input
             className="input rounded px-2 py-2 w-full mt-3 outline-none"
             placeholder="Product"
@@ -35,6 +58,7 @@ const Orderform = ({
             name="orderNo"
             // value={formData.orderNo || ''}
             onChange={handleChange}
+            id="orderNo"
           />
 
           <input
@@ -67,8 +91,8 @@ const Orderform = ({
             name="id"
             // value={formData.id || ''}
             onChange={handleChange}
-            minLength='10'
-            maxLength='10'
+            minLength="10"
+            maxLength="10"
           />
 
           <input
@@ -83,7 +107,8 @@ const Orderform = ({
             className="input rounded px-2 py-2 w-full mt-3 outline-none"
             placeholder="Photo"
             name="photo"
-            type="file"onChange={(e) => setFile(e.target.files[0])}
+            type="file"
+            onChange={(e) => setFile(e.target.files[0])}
             // value={formData.source || ''}
             accept="image/*"
           />

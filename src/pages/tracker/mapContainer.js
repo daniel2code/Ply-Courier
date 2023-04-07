@@ -9,7 +9,10 @@ import {
   SkeletonText,
   Text,
 } from "@chakra-ui/react";
-import { FaLocationArrow, FaTimes } from "react-icons/fa";
+import { FaLocationArrow } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
+import { FaPlane } from "react-icons/fa";
+import planeImg from "../../assets/image/plane.png";
 
 import {
   useJsApiLoader,
@@ -38,13 +41,15 @@ function Map({ details }) {
   /** @type React.MutableRefObject<HTMLInputElement> */
   const destiantionRef = useRef();
 
+  const notify = (text) => toast(text);
+
   useEffect(() => {
     // fireRoute();
     isLoaded &&
       setTimeout(() => {
         calculateRoute();
-      }, 2000);
-  }, []);
+      }, 1000);
+  }, [isLoaded]);
 
   if (!isLoaded) {
     return <SkeletonText />;
@@ -56,15 +61,19 @@ function Map({ details }) {
     }
     // eslint-disable-next-line no-undef
     const directionsService = new google.maps.DirectionsService();
-    const results = await directionsService.route({
-      origin: originRef.current.value,
-      destination: destiantionRef.current.value,
-      // eslint-disable-next-line no-undef
-      travelMode: google.maps.TravelMode.DRIVING,
-    });
-    setDirectionsResponse(results);
-    setDistance(results.routes[0].legs[0].distance.text);
-    setDuration(results.routes[0].legs[0].duration.text);
+    try {
+      const results = await directionsService.route({
+        origin: originRef.current.value,
+        destination: destiantionRef.current.value,
+        // eslint-disable-next-line no-undef
+        travelMode: google.maps.TravelMode.DRIVING,
+      });
+      setDirectionsResponse(results);
+      setDistance(results.routes[0].legs[0].distance.text);
+      setDuration(results.routes[0].legs[0].duration.text);
+    } catch (err) {
+      notify(err.message);
+    }
   }
 
   function clearRoute() {
@@ -97,12 +106,19 @@ function Map({ details }) {
           }}
           onLoad={(map) => setMap(map)}
         >
-          <Marker position={center} />
+          <Marker
+            icon={{
+              url: planeImg,
+              scaledSize: new window.google.maps.Size(50, 50),
+            }}
+            position={center}
+          />
           {directionsResponse && (
             <DirectionsRenderer directions={directionsResponse} />
           )}
         </GoogleMap>
       </Box>
+
       <Box
         p={4}
         borderRadius="lg"
@@ -118,9 +134,9 @@ function Map({ details }) {
               <Input
                 disabled
                 type="text"
-                value={details?.address}
+                value={details?.location}
                 placeholder="Origin"
-                ref={originRef}
+                ref={destiantionRef}
               />
             </Autocomplete>
           </Box>
@@ -130,22 +146,22 @@ function Map({ details }) {
                 disabled
                 type="text"
                 placeholder="Destination"
-                ref={destiantionRef}
-                value={details?.location}
+                ref={originRef}
+                value={details?.address}
               />
             </Autocomplete>
           </Box>
 
-          {/* <ButtonGroup>
+          <ButtonGroup>
             <Button colorScheme="pink" type="submit" onClick={calculateRoute}>
               Calculate Route
             </Button>
-            <IconButton
+            {/* <IconButton
               aria-label="center back"
               icon={<FaTimes />}
               onClick={clearRoute}
-            />
-          </ButtonGroup> */}
+            /> */}
+          </ButtonGroup>
         </HStack>
         <HStack spacing={4} mt={4} justifyContent="space-between">
           <Text>Distance: {distance} </Text>
@@ -162,6 +178,7 @@ function Map({ details }) {
           />
         </HStack>
       </Box>
+      <ToastContainer />
     </Flex>
   );
 }

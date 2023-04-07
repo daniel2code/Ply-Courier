@@ -17,33 +17,28 @@ const Video = () => {
           </div>
           <div className="lg:w-[60%] w-full mt-[25px] lg:mt-0">
             <h1 className="md:text-[45px] text-[30px] font-bold leading-[35px] md:leading-[50px]">
-              Don’t let your warehouse hold you back any longer.
+              Don’t let delivery hold you back any longer.
             </h1>
             <p className="mt-[20px]">
-              Ply Logistics is a full-featured cloud-hosted Warehouse Management
-              System that provides big business WMS functionality to small and
-              medium businesses. Ply Logistics is an alternative to systems like
-              Manhattan Scale, Red Prairie, HighJump, Korber, Paperless,
-              Acellos, Datapel, Peoplevox, CartonCloud, 3PLCentral and many
-              others.
+              If you've been held back by delivery issues, it's time to take
+              action. Our courier service offers fast, reliable, and affordable
+              delivery options that will get your packages where they need to
+              go, on time and in good condition.
             </p>
 
             <p className="mt-[15px]">
-              For too long full featured Warehouse Management Systems have been
-              available only to big business. We have been working towards
-              changing that for some years now. Cloud software has brought
-              sophisticated capabilities to small businesses with many options
-              for web stores, accounting and inventory management that rival big
-              business systems from a few years ago.
+              Don't let delivery problems hold you back from achieving your
+              goals. Whether you're running a business and need to get products
+              to customers quickly, or you're an individual who wants to send a
+              gift to a loved one, we've got you covered.
             </p>
 
             <p className="mt-[15px]">
-              But highly capable warehouse systems have until now been the
-              missing piece of the business software puzzle. Small and medium
-              businesses often have operations with similar and even more
-              complex needs than big business and the simplified functionality
-              for warehouse management in inventory systems and entry-level WMS
-              are just inadequate.
+              With our same-day, next-day, and standard delivery options, as
+              well as international shipping services, you can choose the
+              delivery speed that works best for your needs. And with our online
+              tracking system and secure packaging options, you can have peace
+              of mind knowing your package is in good hands.
             </p>
           </div>
         </div>
@@ -63,26 +58,28 @@ const Video = () => {
               Take control, remove the pain and grow your business
             </h1>
             <p className="mt-[20px]">
-              Many people within businesses, owners, managers and staff are
-              suffering frustration because of poor business processes, poorly
-              implemented systems, and lack of expertise in inventory,
-              warehousing and logistics.
+              At Ply logistics, we understand the challenges that come with
+              running a business. That's why we offer a wide range of shipping
+              and logistics solutions to help you take control of your business
+              and focus on what matters most - growing your bottom line.
             </p>
 
             <p className="mt-[15px]">
-              Some of them are in a death spiral right now due to large amounts
-              of dysfunction. Processes are slow and error-prone, more sales
-              mean more errors and precious time wasted fixing them. We see it
-              all the time and it doesn’t have to be that way.
+              Our experienced team of logistics professionals will work with you
+              to develop a customized plan that meets your specific needs and
+              fits within your budget. From warehousing and fulfillment to
+              last-mile delivery, we'll handle all the details so you can focus
+              on what you do best - running your business.
             </p>
 
             <p className="mt-[15px]">
-              We can help you overcome the dysfunction and run your business
-              without stress so you can improve your profitability and grow.
-              We’ll help you redesign your processes and implement the most
-              modern cloud-hosted logistics software that connects into an
-              ecosystem of integrated applications to run your business more
-              effectively and more efficiently.
+              One of the keys to removing the pain from your business is to work
+              with a logistics provider that you can trust. With our advanced
+              tracking technology and real-time updates, you'll always know
+              where your packages are and when they're expected to arrive. Plus,
+              our team of customer service professionals is available 24/7 to
+              answer any questions you may have and provide support whenever you
+              need it.
             </p>
           </div>
         </div>

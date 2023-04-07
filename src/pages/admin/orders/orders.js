@@ -4,20 +4,33 @@ import Table from "./ordersTable/table";
 import Wrapper from "../wrapper/wrapper";
 import { SiVirustotal } from "react-icons/si";
 import Orderform from "./ordersTable/orderForm/orderform";
+import UpdateModal from "./updateModal/updateModal";
 import { db, storage } from "../../../utils/firebase";
 import { v4 as uuidv4 } from "uuid";
-import { collection, addDoc, doc, setDoc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { ToastContainer, toast } from "react-toastify";
 import emailjs from "emailjs-com";
 
 const Orders = () => {
+  let docId = uuidv4();
+
   const [openForm, setOpenForm] = useState(false);
   const [file, setFile] = useState(null);
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({ trackId: docId });
   const [perc, setPerc] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingUpdate, setLoadingUpdate] = useState(false);
   const [data, setData] = useState(null);
+  const [update, setUpdate] = useState();
+  const [openModal, setOpenModal] = useState(false);
 
   const form = useRef();
 
@@ -34,11 +47,11 @@ const Orders = () => {
       .then(
         (result) => {
           // show the user a success message
-          console.log(result)
+          console.log(result);
         },
         (error) => {
           // show the user an error
-          console.log(error)
+          console.log(error);
         }
       );
   };
@@ -87,6 +100,10 @@ const Orders = () => {
     setOpenForm((prev) => !prev);
   };
 
+  const handleOpenModal = () => {
+    setOpenModal((prev) => !prev);
+  };
+
   const handleChange = useCallback(
     (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -94,6 +111,12 @@ const Orders = () => {
     [formData]
   );
 
+  const handleModalChange = useCallback(
+    (e) => {
+      setUpdate({ ...update, [e.target.name]: e.target.value });
+    },
+    [update]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,11 +125,9 @@ const Orders = () => {
     } else {
       setLoading(true);
 
-      let docId = uuidv4();
-
       try {
-        let data = await setDoc(doc(db, "orders", docId), {
-          id: docId,
+        let data = await setDoc(doc(db, "orders", formData.trackId), {
+          id: formData.trackId,
           ...formData,
         });
         sendForm();
@@ -150,6 +171,32 @@ const Orders = () => {
     resolveRequests();
   }, []);
 
+  const handleUpdateForm = (data) => {
+    setUpdate(data);
+  };
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    setLoadingUpdate(true);
+    const taskDocRef = doc(db, "orders", update.trackId);
+    try {
+      await updateDoc(taskDocRef, {
+        ...update,
+      });
+      setLoadingUpdate(false);
+      notify("succesfully updated order");
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } catch (err) {
+      alert(err);
+      setLoadingUpdate(false);
+    }
+  };
+
+  console.log(update);
+  console.log(formData);
+
   return (
     <Wrapper>
       {openForm && (
@@ -164,6 +211,17 @@ const Orders = () => {
           forrm={form}
         />
       )}
+
+      {openModal && (
+        <UpdateModal
+          handleOpenModal={handleOpenModal}
+          formData={update}
+          handleChange={handleModalChange}
+          handleUpdate={handleUpdate}
+          loading={loadingUpdate}
+        />
+      )}
+
       <div className="p-4">
         <div className="w-full flex justify-center items-center flex-col">
           <div className="max-w-[1250px] w-full">
@@ -185,7 +243,12 @@ const Orders = () => {
             </div>
 
             <div className="mt-[20px]">
-              <Table handleOpenForm={handleOpenForm} data={data} />
+              <Table
+                handleOpenForm={handleOpenForm}
+                data={data}
+                handleOpenModal={handleOpenModal}
+                handleUpdateForm={handleUpdateForm}
+              />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import Testimonies from "../home/testimonies/testimonies";
@@ -6,6 +6,9 @@ import AboutSection from "../home/about/about";
 import Video from "../home/video/video";
 
 const About = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Navbar />

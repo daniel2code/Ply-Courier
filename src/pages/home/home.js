@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import Hero from "./hero/hero";
 import Services from "./serices/services";
 import About from "./about/about";
 import Time from "./time/time";
-import Video from "./video/video"
+import Video from "./video/video";
 import Testimonies from "./testimonies/testimonies";
 
-const home = () => {
+const Home = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <Navbar />
@@ -23,4 +28,4 @@ const home = () => {
   );
 };
 
-export default home;
+export default Home;

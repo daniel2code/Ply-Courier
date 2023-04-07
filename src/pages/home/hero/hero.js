@@ -4,12 +4,14 @@ import "./hero.css";
 import { ToastContainer, toast } from "react-toastify";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
+import { useTranslation } from "react-i18next";
 
 const Hero = () => {
   const [trackData, setTrackData] = useState(null);
   const [trackNum, setTrackNum] = useState();
   const [loading, setLoading] = useState(false);
-  const [filtered, setFiltered] = useState(false);
+  const [filtered, setFiltered] = useState(null);
+  const { t, i18n } = useTranslation();
 
   const navigate = useNavigate();
   const notify = (text) => toast(text);
@@ -29,13 +31,14 @@ const Hero = () => {
 
         try {
           let r = await list.filter((item) => {
-            return item.id === trackNum;
+            return item.trackId === trackNum;
           });
 
-          setFiltered(r);
-          console.log('dataaaaa', r);
+          await setFiltered(r);
+          console.log(r)
+          console.log("dataaaaa", filtered);
 
-          if (!filtered) notify("incorrect track code");
+          if (r.length === 0) notify("incorrect track code");
           else {
             navigate("/tracker", { state: r });
           }
@@ -69,8 +72,9 @@ const Hero = () => {
               <div className="">
                 <div className="">
                   <h1 className="md:text-[70px] text-[40px] leading-[45px] text-white font-extrabold md:leading-[75px]">
-                    Safe & Reliable{" "}
-                    <span className="text-[#f15f22]">Logistic</span> <br />{" "}
+                    Safe and efficient
+                    {"  "}
+                    <span className="text-[#f15f22]">Delivery</span> <br />{" "}
                     Solutions!
                   </h1>
                 </div>
@@ -81,7 +85,7 @@ const Hero = () => {
                     placeholder="Your Tracking ID"
                     className="bg-white w-full max-w-[500px] h-[55px] pl-3 outline-none rounded-l-lg"
                     onChange={(e) => setTrackNum(e.target.value)}
-                    maxLength="10"
+                    // maxLength="10"
                     minLength="10"
                   />
                   <button

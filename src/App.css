@@ -101,3 +101,9 @@
     width: 100%;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .css-18lszlg {
+    display: none;
+  }
+}

@@ -1,7 +1,8 @@
 import React from "react";
 import "../../orders/ordersTable/table.css";
+import moment from "moment";
 
-const TransTable = () => {
+const TransTable = ({ data }) => {
   return (
     <div className="table_box w-full">
       <div className="flex justify-between py-3 px-4">
@@ -13,9 +14,9 @@ const TransTable = () => {
           />
           <select className="input bg-transparent w-full px-2 py-2 sm:w-[180px] rounded outline-none">
             <option>All</option>
-            <option>Completed</option>
+            {/* <option>Completed</option>
             <option>Pending</option>
-            <option>Failed</option>
+            <option>Failed</option> */}
           </select>
         </div>
       </div>
@@ -27,16 +28,23 @@ const TransTable = () => {
           <p className="text-[15px] font-bold w-[25%]">Source</p>
           <p className="text-[15px] font-bold w-[25%]">Date</p>
         </div>
-        {[...Array(10)].map(() => {
-          return (
-            <div className="flex t_body_box px-3 py-4 w-[540px] sm:w-full">
-              <p className="text-[13px] w-[20%]">3465764</p>
-              <p className="text-[13px] w-[30%]">20,000</p>
-              <p className="text-[13px] w-[25%]">Paypal</p>
-              <p className="text-[13px] w-[25%]">21/05/2022</p>
-            </div>
-          );
-        })}
+        {data &&
+          data.map((item, i) => {
+            const dateString = item.date;
+            const formattedDate = moment(dateString).format("MMMM DD, YYYY");
+
+            return (
+              <div
+                className="flex t_body_box px-3 py-4 w-[540px] sm:w-full"
+                key={i}
+              >
+                <p className="text-[13px] w-[20%]">{item.orderNo}</p>
+                <p className="text-[13px] w-[30%]">{item.amount}</p>
+                <p className="text-[13px] w-[25%]">Transfer</p>
+                <p className="text-[13px] w-[25%]">{formattedDate}</p>
+              </div>
+            );
+          })}
       </div>
 
       <div className="mt-5 px-3 flex justify-between mb-2">

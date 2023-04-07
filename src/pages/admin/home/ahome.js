@@ -14,16 +14,21 @@ import Table from "../orders/ordersTable/table";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../../utils/firebase";
 import { numberFormat } from "../../../utils/numberFormat";
+import { useFilter } from "../../../utils/useFilter";
 
 const countriesData = [
-  { name: "Egypt", num: 200 },
-  { name: "Spain", num: 200 },
-  { name: "USA", num: 450 },
-  { name: "Germany", num: 300 },
+  { name: "Egypt", num: 0 },
+  { name: "Spain", num: 0 },
+  { name: "USA", num: 0 },
+  { name: "Germany", num: 0 },
 ];
 
 const Ahome = () => {
   const [data, setData] = useState(null);
+
+  const dispatchedResult = useFilter(data, "dispatched").result;
+  const arrivedResult = useFilter(data, "Arrived").result;
+  const shippedResult = useFilter(data, "Shipped").result;
 
   const statsData = [
     {
@@ -34,22 +39,22 @@ const Ahome = () => {
     },
 
     {
-      num: 30,
-      type: "Pending",
+      num: dispatchedResult ? dispatchedResult.length : 0,
+      type: "Dispatched",
       color: "#00000030",
       icon: <MdPending size={25} />,
     },
 
     {
-      num: 830,
-      type: "Completed",
+      num: shippedResult ? shippedResult.length : 0,
+      type: "Shipped",
       color: "#00000030",
       icon: <BsFillCheckCircleFill size={25} />,
     },
 
     {
-      num: 230,
-      type: "Cancelled",
+      num: arrivedResult ? arrivedResult.length : 0,
+      type: "Arrived",
       color: "#00000030",
       icon: <TiCancel size={25} />,
     },
@@ -85,10 +90,9 @@ const Ahome = () => {
   }, []);
 
   const getTotalAmount = data?.reduce(
-    (acc, curr) => acc + Number(curr.amount), 0
+    (acc, curr) => acc + Number(curr.amount),
+    0
   );
-
-  console.log(data)
 
   return (
     <>

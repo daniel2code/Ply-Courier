@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ProgressBar, Step } from "react-step-progress-bar";
 import { useLocation } from "react-router-dom";
 import MapView from "./mapContainer";
@@ -16,6 +16,10 @@ const Tracker = () => {
   const handleCloseModal = () => {
     setOpenModal(!openModal);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="">
@@ -42,11 +46,11 @@ const Tracker = () => {
             <div className="flex justify-between p-5">
               <div>
                 <h3 className="font-bold text-[18px]">
-                  Your items has been dispatched
+                  Your item is on route
                 </h3>
-                <p className="text-[15px] text-gray-500 mt-2">
+                {/* <p className="text-[15px] text-gray-500 mt-2">
                   Expected Delivery date: 17 December 2022
-                </p>
+                </p> */}
               </div>
 
               <button

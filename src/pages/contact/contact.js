@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
 import { MdLocationPin } from "react-icons/md";
@@ -11,13 +11,14 @@ import {
 } from "react-icons/bs";
 
 const Contact = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Navbar />
       <div className="w-full flex justify-center">
-        <div
-          className={`w-[100%] flex justify-center items-center wrapper`}
-        >
+        <div className={`w-[100%] flex justify-center items-center wrapper`}>
           <h2 className="text-white text-[30px] sm:text-[40px] font-bold">
             Contact Us
           </h2>
@@ -73,7 +74,7 @@ const Contact = () => {
                 <div className="flex gap-x-4">
                   <MdLocationPin size={30} color={`black`} />
                   <p className="text-[15px] text-[#000] sm:text-[16px]">
-                    30 Nwaniba Road Aba, Abia State, Nigeria
+                    USA, New York - 10620
                   </p>
                 </div>
               </div>
@@ -85,7 +86,7 @@ const Contact = () => {
                 <div className="flex gap-x-4">
                   <BsFillTelephoneFill size={22} color={`black`} />
                   <p className="text-[15px] text-[#000] sm:text-[16px]">
-                    +234-90578393839
+                    + (123) 1800-567-8990
                   </p>
                 </div>
               </div>

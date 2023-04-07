@@ -26,9 +26,9 @@ const Time = () => {
                 <BsClock size={40} color="#f15f22" />
               </div>
               <div className="ml-[20px]">
-                <p className="text-[#677294]">Sunday CLOSED</p>
+                <p className="text-[#677294]">Available Days</p>
                 <span className="text-[18px] font-semibold">
-                  Mon - Sat 8.00 - 18.00
+                  Mon - Fri 8.00 - 18.00
                 </span>
               </div>
             </div>
@@ -39,7 +39,7 @@ const Time = () => {
                 <GoLocation size={40} color="#f15f22" />
               </div>
               <div className="ml-[20px]">
-                <p className="text-[#677294]">Columbia, SC 29201</p>
+                <p className="text-[#677294]">Get Us At</p>
                 <span className="text-[18px] font-semibold">
                   USA, New York - 10620
                 </span>

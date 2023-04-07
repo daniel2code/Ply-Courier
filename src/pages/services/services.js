@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsCartCheckFill } from "react-icons/bs";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
@@ -10,27 +10,34 @@ const Services = () => {
     setHoverColor(color);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const serviceData = [
     {
-      title: "Land Transport",
+      id: 1,
+      title: "International shipping",
       icon: <BsCartCheckFill color={hoverColor} size={40} />,
-      text: " The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.",
+      text: " Our international shipping service makes it easy to send packages around the world, with delivery to many countries.",
     },
     {
-      title: "Water Transport",
+      id: 2,
+      title: "Online tracking",
       icon: <BsCartCheckFill color={hoverColor} size={40} />,
-      text: " The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.",
+      text: "Keep track of your package every step of the way with our convenient online tracking system.",
     },
     {
-      title: "Air Transport",
+      id: 3,
+      title: "Secure packaging",
       icon: <BsCartCheckFill color={hoverColor} size={40} />,
-      text: " The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.",
+      text: "We take the utmost care to ensure your package arrives in the same condition it was sent. Our secure packaging options help protect your items during transit.",
     },
-
     {
-      title: "Air Transport",
+      id: 4,
+      title: "E-commerce logistics",
       icon: <BsCartCheckFill color={hoverColor} size={40} />,
-      text: " The sea freight service has grown conside rably in recent years. We spend timetting to know your processes to.",
+      text: "We specialize in providing logistics and transportation solutions for e-commerce businesses. From inventory management to order fulfillment and last-mile delivery. we can help you streamline your operations.",
     },
   ];
 
@@ -59,8 +66,12 @@ const Services = () => {
               return (
                 <div
                   className="w-[100%] md:w-[48%] lg:w-[32%] border service-card border-gray-300 rounded-md flex flex-col justify-center items-center px-[2%] h-[350px]"
-                  onMouseEnter={() => handleHoverColor("white")}
-                  onMouseLeave={() => handleHoverColor("orange")}
+                  onMouseEnter={() =>
+                    item.id === 1 && handleHoverColor("white")
+                  }
+                  onMouseLeave={() =>
+                    item.id === 1 && handleHoverColor("#f15f22")
+                  }
                 >
                   <span className="">{item.icon}</span>
 

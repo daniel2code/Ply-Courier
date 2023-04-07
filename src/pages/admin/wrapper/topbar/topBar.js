@@ -9,7 +9,7 @@ const TopBar = ({ handleOpenMenu }) => {
       <div className="flex items-center">
         <p className="text-[30px] font-semibold">Admin</p>
         <p className="text-[17px] ml-6 hidden md:flex">
-          Courier Management System
+          Ply Logistics Management System
         </p>
       </div>
       <div>

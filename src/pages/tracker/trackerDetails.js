@@ -1,8 +1,13 @@
 import React from "react";
-import Shoe from "../../assets/image/heels.png";
 import { numberFormat } from "../../utils/numberFormat";
+import moment from "moment";
 
 const TrackerDetails = ({ closeModal, trackDetails }) => {
+  console.log(trackDetails);
+
+  const dateString = trackDetails?.date;
+  const formattedDate = moment(dateString).format("MMMM DD, YYYY");
+
   return (
     <div className="w-full h-screen bg-[#00000080] flex justify-center items-center ">
       <div className="rounded bg-[#fff] w-full max-w-[600px]  p-4">
@@ -12,7 +17,7 @@ const TrackerDetails = ({ closeModal, trackDetails }) => {
               Order ID: <b>{trackDetails?.orderNo}</b>
             </p>
             <p className="text-[15px] mt-[5px] mb-3">
-              Placed On: <b>{trackDetails?.date}</b>
+              Arrival Date: <b>{formattedDate}</b>
             </p>
           </div>
 
@@ -35,32 +40,35 @@ const TrackerDetails = ({ closeModal, trackDetails }) => {
 
           <div className="w-1/2">
             <div className="w-full">
-              <img src={trackDetails?.photo} className="w-full h-auto max-h-[200px] " />
+              <img
+                src={trackDetails?.photo}
+                className="w-full h-auto max-h-[200px] "
+              />
             </div>
           </div>
         </div>
-        <p className="text-[#ff5f13] text-[18px] font-medium mt-5">
+        <p className="text-[#ff5f13] text-[16px] font-bold mt-5">
           Tracking Status
         </p>
         <div className="w-full flex justify-center">
-          <div className="w-[100%] h-[8px] bg-gray-400 mt-4">
+          <div className="w-[100%] h-[8px] bg-gray-400 mt-2">
             <div
               className={`${
-                trackDetails?.status === "dispatched"
+                trackDetails?.status.toLowerCase() === "dispatched"
                   ? "w-[33%]"
-                  : trackDetails?.status === "shipped"
+                  : trackDetails?.status.toLowerCase() === "shipped"
                   ? "w-[66%]"
-                  : trackDetails?.status === "delivered"
+                  : trackDetails?.status.toLowerCase() === "arrived"
                   ? "w-[100%]"
                   : "w-[0%]"
-              } h-[8px] bg-[#ff5f13]`}
+              } h-[8px] bg-[#90EE90]`}
             ></div>
           </div>
         </div>
         <div className="flex justify-between mt-1">
           <p className="text-[14px] text-gray-700">Placed</p>
           <p className="text-[14px] text-gray-700">Shipped</p>
-          <p className="text-[14px] text-gray-300">Delivered</p>
+          <p className="text-[14px] text-gray-700">Delivered</p>
         </div>
       </div>
     </div>

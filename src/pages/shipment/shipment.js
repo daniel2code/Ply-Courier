@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/navbar";
 import Footer from "../../components/footer/footer";
@@ -11,6 +11,38 @@ const Shipment = () => {
   const [trackNum, setTrackNum] = useState();
   const [loading, setLoading] = useState(false);
   const [filtered, setFiltered] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    const filterData = async () => {
+      if (trackData) {
+        try {
+          let r = await trackData.filter((item) => {
+            return item.trackId === trackNum;
+          });
+
+          await setFiltered(r);
+          console.log("dataaaaa", r);
+
+          if (r.length === 0) notify("incorrect track code");
+          else {
+            navigate("/tracker", { state: r });
+          }
+          setLoading(false);
+        } catch (err) {
+          notify("incorrect track code");
+          setLoading(false);
+        }
+      }
+    };
+
+    filterData();
+  }, [trackData]);
+
+  console.log(trackData);
 
   const navigate = useNavigate();
   const notify = (text) => toast(text);
@@ -27,25 +59,7 @@ const Shipment = () => {
         querySnapshot.forEach((doc) => {
           list.push(doc.data());
         });
-
-        try {
-          let r = await list.filter((item) => {
-            return item.id === trackNum;
-          });
-
-          setFiltered(r);
-          console.log("dataaaaa", r);
-
-          if (!filtered) notify("incorrect track code");
-          else {
-            navigate("/tracker", { state: r });
-          }
-          setLoading(false);
-        } catch (err) {
-          notify("incorrect track code");
-          setLoading(false);
-        }
-
+        setLoading(false);
         setTrackData(list);
       } catch (err) {
         console.log(err);
@@ -92,7 +106,7 @@ const Shipment = () => {
                   placeholder="Your Tracking Code"
                   className="bg-white w-full h-[55px] pl-3 outline-none rounded-[7px]"
                   onChange={(e) => setTrackNum(e.target.value)}
-                  maxLength="10"
+                  // maxLength="10"
                   minLength="10"
                 />
                 <button
